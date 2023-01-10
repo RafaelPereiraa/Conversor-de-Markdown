@@ -1,0 +1,7 @@
+export { ReactComponent as Plus } from './PlusIcon.svg'
+export { ReactComponent as Remove } from './RemoveIcon.svg'
+export { default as Document } from './DocumentIcon.svg'
+export { default as DocumentActive } from './DocumentActiveIcon.svg'
+export { ReactComponent as Editing } from './EditingIcon.svg'
+export { ReactComponent as Saving } from './SavingIcon.svg'
+export { ReactComponent as Saved } from './SavedIcon.svg'

@@ -1,25 +1,56 @@
-import logo from './logo.svg'
-import './App.css'
+import styled, { createGlobalStyle } from 'styled-components'
+import { SideBar } from 'sidebar'
+import { EditorWindow } from 'editor_window'
+import { useFiles } from 'resources/files/use-files'
 
 function App () {
+  const {
+    handleChangeMarkDown,
+    handleCreateFile,
+    handleRemoveFile,
+    handleSaveContent,
+    handleSetActive,
+    content,
+    title,
+    converted,
+    files,
+    inputRef,
+  } = useFiles()
+
+  const GlobalStyle = createGlobalStyle`
+    code{
+      display: block;
+      white-space: pre-wrap;
+      font-size: .65em;
+    }
+  `
+
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <SideBar
+        files={files}
+        handleCreateFile={handleCreateFile}
+        handleRemoveFile={handleRemoveFile}
+        handleSetActive={handleSetActive}
+      />
+      <EditorWindow
+        converted={converted}
+        content={content}
+        handleSaveContent={handleSaveContent}
+        handleChangeMarkDown={handleChangeMarkDown}
+        title={title}
+        inputRef={inputRef}
+        files={files}
+      />
+      <GlobalStyle />
+    </Container>
   )
 }
 
-export default App
+const Container = styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+`
+
+export { App }
